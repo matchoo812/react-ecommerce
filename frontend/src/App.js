@@ -1,19 +1,23 @@
-import { Fragment } from 'react';
 import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomeScreen from './screens/HomeScreen';
+import HomePage from './screens/HomePage';
+import ProductDetailPage from './screens/ProductDetailPage';
 
 export default function App() {
   return (
-    <Fragment>
+    <Router>
       <Header />
       <main className='py-3'>
         <Container>
-          <HomeScreen />
+          <Routes>
+            <Route path='/' element={<HomePage />} exact />
+            <Route path='product/:id' element={<ProductDetailPage />} />
+          </Routes>
         </Container>
       </main>
       <Footer />
-    </Fragment>
+    </Router>
   );
 }
