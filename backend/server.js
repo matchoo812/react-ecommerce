@@ -3,11 +3,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 // for backend imports, .js extension is required for local files
 import products from './data/products.js';
+import connectDB from './config/db.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 5500;
 const ENVIRONMENT = process.env.NODE_ENV;
 
+connectDB();
 const app = express();
 
 app.get('/', (req, res) => {
