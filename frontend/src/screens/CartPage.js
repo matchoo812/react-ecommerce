@@ -1,15 +1,13 @@
-// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 export default function CartPage() {
   // let params = useParams();
-  // console.log(params);
-  const navigate = useNavigate();
   // const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -24,7 +22,7 @@ export default function CartPage() {
   // }, [dispatch, productId, qty]);
 
   const handleRemoveFromCart = (id) => {
-    console.log(`item ${id} removed from cart`);
+    dispatch(removeFromCart(id));
   };
 
   const handleCheckout = () => {
