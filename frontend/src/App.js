@@ -6,6 +6,7 @@ import HomePage from './screens/HomePage';
 import ProductDetailPage from './screens/ProductDetailPage';
 import CartPage from './screens/CartPage';
 import LoginPage from './screens/LoginPage';
+import RegisterPage from './screens/RegisterPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <main className='py-3'>
         <Container>
           <Routes>
+            <Route path='/register' element={<RegisterPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/product/:id' element={<ProductDetailPage />} />
             {/* use empty string in subpath to indicate an optional parameter */}
