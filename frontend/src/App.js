@@ -7,6 +7,7 @@ import ProductDetailPage from './screens/ProductDetailPage';
 import CartPage from './screens/CartPage';
 import LoginPage from './screens/LoginPage';
 import RegisterPage from './screens/RegisterPage';
+import ProfilePage from './screens/ProfilePage';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Routes>
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
             <Route path='/product/:id' element={<ProductDetailPage />} />
             {/* use empty string in subpath to indicate an optional parameter */}
             <Route path='/cart'>
