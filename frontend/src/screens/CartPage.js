@@ -27,7 +27,7 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     // console.log('Buying stuff!');
-    navigate('/login?redirect=shipping');
+    navigate('/login?redirect=/shipping');
   };
 
   return (

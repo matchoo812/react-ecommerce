@@ -8,6 +8,8 @@ import CartPage from './screens/CartPage';
 import LoginPage from './screens/LoginPage';
 import RegisterPage from './screens/RegisterPage';
 import ProfilePage from './screens/ProfilePage';
+import ShippingPage from './screens/ShippingPage';
+import PaymentMethodPage from './screens/PaymentMethodPage';
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/shipping' element={<ShippingPage />} />
+            <Route path='/payment' element={<PaymentMethodPage />} />
             <Route path='/product/:id' element={<ProductDetailPage />} />
             {/* use empty string in subpath to indicate an optional parameter */}
             <Route path='/cart'>
