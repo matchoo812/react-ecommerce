@@ -22,7 +22,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     return;
   } else {
     const order = new Order({
-      user: req.use._id,
+      user: req.user._id,
       orderItems,
       shippingAddress,
       paymentMethod,
