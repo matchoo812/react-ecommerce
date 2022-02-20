@@ -11,6 +11,7 @@ import ProfilePage from './screens/ProfilePage';
 import ShippingPage from './screens/ShippingPage';
 import PaymentMethodPage from './screens/PaymentMethodPage';
 import PlaceOrderPage from './screens/PlaceOrderPage';
+import ShowOrderPage from './screens/ShowOrderPage';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <Route path='/shipping' element={<ShippingPage />} />
             <Route path='/payment' element={<PaymentMethodPage />} />
             <Route path='/placeorder' element={<PlaceOrderPage />} />
+            <Route path='/order/:id' element={<ShowOrderPage />} />
             <Route path='/product/:id' element={<ProductDetailPage />} />
             {/* use empty string in subpath to indicate an optional parameter */}
             <Route path='/cart'>

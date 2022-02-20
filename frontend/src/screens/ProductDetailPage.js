@@ -8,7 +8,7 @@ import Message from '../components/Message';
 import { listProductDetails } from '../actions/productActions';
 import { addToCart } from '../actions/cartActions';
 
-export default function ProductDetailPage({ history }) {
+export default function ProductDetailPage() {
   let params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
