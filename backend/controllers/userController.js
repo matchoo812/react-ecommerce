@@ -112,11 +112,51 @@ const getUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
-// @desc    delete user
+// @desc    get a user (as admin)
+// @route   GET /api/users/:id
+// @access  private/admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc    update user (as admin)
+// @route   PUT /api/users/:id
+// @access  private/admin
+const updateUser = asyncHandler(async (req, res) => {
+  const { body, params } = req;
+  const user = await User.findById(params.id);
+
+  if (user) {
+    user.name = body.name || user.name;
+    user.email = body.email || user.email;
+    user.isAdmin = body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc    delete a user
 // @route   DELETE /api/users/:id
 // @access  private/admin
 const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params._id);
+  const user = await User.findById(req.params.id);
 
   if (user) {
     await user.remove();
@@ -132,6 +172,8 @@ export {
   registerUser,
   getUserProfile,
   getUsers,
-  deleteUser,
   updateUserProfile,
+  getUserById,
+  updateUser,
+  deleteUser,
 };
