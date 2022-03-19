@@ -81,7 +81,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @access  private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-  // res.send('Why you stalking our users?');
+
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
@@ -104,4 +104,34 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, getUserProfile, updateUserProfile };
+// @desc    get all users
+// @route   GET /api/users
+// @access  private/admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+// @desc    delete user
+// @route   DELETE /api/users/:id
+// @access  private/admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params._id);
+
+  if (user) {
+    await user.remove();
+    res.json({ message: 'User removed.' });
+  } else {
+    res.status(404);
+    throw new Error('User not found.');
+  }
+});
+
+export {
+  authUser,
+  registerUser,
+  getUserProfile,
+  getUsers,
+  deleteUser,
+  updateUserProfile,
+};

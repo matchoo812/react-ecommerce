@@ -92,6 +92,14 @@ export default function CartPage() {
             <ListGroup.Item>
               <Button
                 type='button'
+                className='w-100 btn-light'
+                onClick={() => navigate('/')}>
+                Continue Shopping
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type='button'
                 className='w-100'
                 disabled={cartItems.length === 0}
                 onClick={handleCheckout}>

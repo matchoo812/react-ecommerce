@@ -35,6 +35,7 @@ export default function LoginPage() {
 
   return (
     <FormContainer>
+      {redirect === 'login' && <Message variant='info'>Please log in first.</Message>}
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}

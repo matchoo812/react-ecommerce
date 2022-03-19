@@ -18,6 +18,9 @@ export default function ProductDetailPage() {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     dispatch(listProductDetails(params.id));
   }, [dispatch, params]);
@@ -98,7 +101,9 @@ export default function ProductDetailPage() {
                     className='w-100'
                     type='button'
                     disabled={product.countInStock === 0}
-                    onClick={handleAddToCart}>
+                    onClick={
+                      userInfo ? handleAddToCart : () => navigate('/login?redirect=login')
+                    }>
                     Add to Cart
                   </Button>
                 </ListGroup.Item>
