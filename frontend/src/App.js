@@ -14,6 +14,7 @@ import PlaceOrderPage from './screens/PlaceOrderPage';
 import ShowOrderPage from './screens/ShowOrderPage';
 import UserListPage from './screens/UserListPage';
 import EditUserPage from './screens/EditUserPage';
+import ProductListPage from './screens/ProductListPage';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             </Route>
             <Route path='/admin/userlist' element={<UserListPage />} />
             <Route path='/admin/user/:id/edit' element={<EditUserPage />} />
+            <Route path='/admin/productlist' element={<ProductListPage />} />
             <Route path='/' element={<HomePage />} exact />
           </Routes>
         </Container>
