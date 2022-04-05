@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts } from '../actions/productActions';
+import { deleteProduct, listProducts, createProduct } from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 export default function ProductListPage() {
   const dispatch = useDispatch();
@@ -14,28 +15,53 @@ export default function ProductListPage() {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: productDeleteLoading,
+    error: productDeleteError,
+    success: productDeleteSuccess,
+  } = productDelete;
+
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: productCreateLoading,
+    error: productCreateError,
+    success: productCreateSuccess,
+    product: createdProduct,
+  } = productCreate;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: deleteSuccess } = userDelete;
-
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
+    if (!userInfo || !userInfo.isAdmin) {
       navigate('/login');
     }
-  }, [dispatch, navigate, userInfo, deleteSuccess]);
+
+    if (productCreateSuccess) {
+      navigate(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    productDeleteSuccess,
+    createdProduct,
+    productCreateSuccess,
+  ]);
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      // @todo DELETE PRODUCT
+      dispatch(deleteProduct(id));
     }
   };
 
   const handleCreateProduct = () => {
-    // @todo CREATE PRODUCT
+    dispatch(createProduct());
   };
 
   return (
@@ -51,6 +77,10 @@ export default function ProductListPage() {
         </Col>
       </Row>
 
+      {productDeleteLoading && <Loader />}
+      {productDeleteError && <Message variant='danger'>{error}</Message>}
+      {productCreateLoading && <Loader />}
+      {productCreateError && <Message variant='danger'>{error}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (

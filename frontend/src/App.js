@@ -13,7 +13,7 @@ import PaymentMethodPage from './screens/PaymentMethodPage';
 import PlaceOrderPage from './screens/PlaceOrderPage';
 import ShowOrderPage from './screens/ShowOrderPage';
 import UserListPage from './screens/UserListPage';
-import EditUserPage from './screens/EditUserPage';
+import UserEditPage from './screens/UserEditPage';
 import ProductListPage from './screens/ProductListPage';
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
               <Route path='' element={<CartPage />} />
             </Route>
             <Route path='/admin/userlist' element={<UserListPage />} />
-            <Route path='/admin/user/:id/edit' element={<EditUserPage />} />
+            <Route path='/admin/user/:id/edit' element={<UserEditPage />} />
             <Route path='/admin/productlist' element={<ProductListPage />} />
             <Route path='/' element={<HomePage />} exact />
           </Routes>
