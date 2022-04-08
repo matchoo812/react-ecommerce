@@ -44,15 +44,15 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @access  private/admin
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
-    name: 'Sample name',
+    name: 'Enter product name',
     price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Sample brand',
-    category: 'Sample category',
+    brand: 'Enter product brand',
+    category: 'Enter product category',
     countInStock: 0,
     numReviews: 0,
-    description: 'Sample description',
+    description: 'Enter product description',
   });
 
   const createdProduct = await product.save();
