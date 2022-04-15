@@ -13,15 +13,26 @@ export default function ShowOrderPage() {
   const params = useParams();
   const orderId = params.id;
   const dispatch = useDispatch();
-  // console.log(orderId);
+  // console.log(`order ID: ${orderId}`);
 
   const [sdkIsReady, setSdkIsReady] = useState(false);
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+  // const orderUserId = order.user._id;
+  // console.log(`user ID from order: ${orderUserId}`);
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
+
+  // const { userInfo } = useSelector((state) => state.userLogin);
+  // const userId = userInfo._id;
+  // console.log(`current user ID: ${userId}, is admin: ${userInfo.isAdmin}`);
+
+  // TODO: conditional rendering to prevent users from seeing each others' orders
+  // userId !== orderUserId && !userInfo.isAdmin ? (
+  //   <Message variant='danger'>Sorry, you are not authorized to view this page.</Message>
+  // ) :
 
   useEffect(() => {
     const addPayPalScript = async () => {
@@ -53,7 +64,7 @@ export default function ShowOrderPage() {
   };
 
   const handlePaymentSuccess = (paymentResult) => {
-    console.log(paymentResult);
+    // console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
 

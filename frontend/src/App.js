@@ -11,6 +11,7 @@ import ProfilePage from './screens/ProfilePage';
 import ShippingPage from './screens/ShippingPage';
 import PaymentMethodPage from './screens/PaymentMethodPage';
 import PlaceOrderPage from './screens/PlaceOrderPage';
+import OrderListPage from './screens/OrderListPage';
 import ShowOrderPage from './screens/ShowOrderPage';
 import UserListPage from './screens/UserListPage';
 import UserEditPage from './screens/UserEditPage';
@@ -39,6 +40,7 @@ export default function App() {
             </Route>
             <Route path='/admin/userlist' element={<UserListPage />} />
             <Route path='/admin/user/:id/edit' element={<UserEditPage />} />
+            <Route path='/admin/orderlist' element={<OrderListPage />} />
             <Route path='/admin/productlist' element={<ProductListPage />} />
             <Route path='/admin/product/:id/edit' element={<ProductEditPage />} />
             <Route path='/' element={<HomePage />} exact />
