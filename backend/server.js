@@ -2,6 +2,7 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
+import morgan from 'morgan';
 // for backend imports, .js extension is required for local files
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -18,6 +19,10 @@ const ENVIRONMENT = process.env.NODE_ENV;
 connectDB();
 const app = express();
 app.use(express.json());
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get('/', (req, res) => {
   res.send('API is up and running...');
