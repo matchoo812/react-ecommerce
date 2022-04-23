@@ -43,6 +43,7 @@ export default function App() {
             <Route path='/admin/orderlist' element={<OrderListPage />} />
             <Route path='/admin/productlist' element={<ProductListPage />} />
             <Route path='/admin/product/:id/edit' element={<ProductEditPage />} />
+            <Route path='/search/:keyword' element={<HomePage />} />
             <Route path='/' element={<HomePage />} exact />
           </Routes>
         </Container>

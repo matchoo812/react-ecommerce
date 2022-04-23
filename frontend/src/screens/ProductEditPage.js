@@ -105,7 +105,7 @@ export default function ProductEditPage() {
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
-      <FormContainer>
+      <FormContainer custom='true'>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
@@ -142,7 +142,7 @@ export default function ProductEditPage() {
                 onChange={(e) => setImage(e.target.value)}></Form.Control>
               <Form.Control
                 type='file'
-                id='image-file'
+                // id='image-file'
                 label='Choose File'
                 custom
                 onChange={handleFileUpload}></Form.Control>

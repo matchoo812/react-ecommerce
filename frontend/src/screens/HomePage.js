@@ -1,5 +1,6 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import Message from '../components/Message';
@@ -7,6 +8,8 @@ import Loader from '../components/Loader';
 import { listProducts } from '../actions/productActions';
 
 export default function HomeScreen() {
+  const params = useParams();
+  const { keyword } = params;
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
@@ -23,8 +26,8 @@ export default function HomeScreen() {
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <Fragment>
