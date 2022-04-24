@@ -41,9 +41,20 @@ export default function App() {
             <Route path='/admin/userlist' element={<UserListPage />} />
             <Route path='/admin/user/:id/edit' element={<UserEditPage />} />
             <Route path='/admin/orderlist' element={<OrderListPage />} />
-            <Route path='/admin/productlist' element={<ProductListPage />} />
+            <Route path='/admin/productlist' element={<ProductListPage />} exact />
+            <Route
+              path='/admin/productlist/:pageNumber'
+              element={<ProductListPage />}
+              exact
+            />
             <Route path='/admin/product/:id/edit' element={<ProductEditPage />} />
-            <Route path='/search/:keyword' element={<HomePage />} />
+            <Route path='/search/:keyword' element={<HomePage />} exact />
+            <Route path='/page/:pageNumber' element={<HomePage />} exact />
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              element={<HomePage />}
+              exact
+            />
             <Route path='/' element={<HomePage />} exact />
           </Routes>
         </Container>

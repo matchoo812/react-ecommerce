@@ -5,6 +5,11 @@ import Product from '../models/productModel.js';
 // @route   GET /api/products
 // @access  public
 const getProducts = asyncHandler(async (req, res) => {
+  // set up pagination
+  const itemsPerPage = 4;
+  const page = Number(req.query.pageNumber) || 1;
+
+  // use regex to match part of keyword
   const keyword = req.query.keyword
     ? {
         name: {
@@ -14,9 +19,13 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const products = await Product.find({ ...keyword });
+  // count number of total matchin products
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(itemsPerPage)
+    .skip(itemsPerPage * (page - 1));
 
-  res.json(products);
+  res.json({ products, page, pages: Math.ceil(count / itemsPerPage) });
 });
 
 // @desc    fetch single product
