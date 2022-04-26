@@ -7,6 +7,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listProducts } from '../actions/productActions';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
 
 export default function HomeScreen() {
   const params = useParams();
@@ -32,6 +33,7 @@ export default function HomeScreen() {
 
   return (
     <Fragment>
+      {!keyword && <ProductCarousel />}
       <h1>Newest Products</h1>
       {loading ? (
         <Loader />
