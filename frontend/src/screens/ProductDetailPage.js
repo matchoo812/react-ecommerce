@@ -8,6 +8,7 @@ import Message from '../components/Message';
 import { listProductDetails, createProductReview } from '../actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import { addToCart } from '../actions/cartActions';
+import Meta from '../components/Meta';
 
 export default function ProductDetailPage() {
   let params = useParams();
@@ -59,6 +60,7 @@ export default function ProductDetailPage() {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />

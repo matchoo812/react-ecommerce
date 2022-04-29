@@ -1,12 +1,13 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listProducts } from '../actions/productActions';
 import Paginate from '../components/Paginate';
+import Meta from '../components/Meta';
 import ProductCarousel from '../components/ProductCarousel';
 
 export default function HomeScreen() {
@@ -33,7 +34,14 @@ export default function HomeScreen() {
 
   return (
     <Fragment>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
       <h1>Newest Products</h1>
       {loading ? (
         <Loader />

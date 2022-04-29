@@ -16,6 +16,8 @@ export default function SearchBox() {
     }
   };
 
+  // TODO: clear form after search
+
   return (
     <Form onSubmit={handleSubmit} className='d-flex mt-sm-2'>
       <Form.Control
